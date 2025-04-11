@@ -11,21 +11,21 @@ private:
     vector<string> courses;
 
 public:
-    // Default constructor
+    
     Student() {
         name = "Unknown";
         roll = 0;
         cgpa = 0.0;
     }
 
-    // Parameterized constructor
+    
     Student(string n, int r, float c) {
         name = n;
         roll = r;
         setCGPA(c);
     }
 
-    // Copy constructor
+    
     Student(const Student &s) {
         name = s.name;
         roll = s.roll;
@@ -33,9 +33,9 @@ public:
         courses = s.courses;
     }
 
-    // Destructor
+    
     ~Student() {
-        // No manual cleanup needed here
+        
     }
 
     void setCGPA(float c) {
@@ -88,7 +88,7 @@ public:
     }
 };
 
-// Main function for demo
+
 int main() {
     StudentManagementSystem sms;
 
