@@ -11,31 +11,24 @@ private:
     vector<string> courses;
 
 public:
-    
     Student() {
         name = "Unknown";
         roll = 0;
         cgpa = 0.0;
     }
-
-    
     Student(string n, int r, float c) {
         name = n;
         roll = r;
         setCGPA(c);
     }
 
-    
     Student(const Student &s) {
         name = s.name;
         roll = s.roll;
         cgpa = s.cgpa;
         courses = s.courses;
     }
-
-    
     ~Student() {
-        
     }
 
     void setCGPA(float c) {
@@ -87,7 +80,6 @@ public:
             s.displayInfo();
     }
 };
-
 
 int main() {
     StudentManagementSystem sms;
