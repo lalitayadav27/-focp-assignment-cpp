@@ -1,1 +1,112 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
 
+class Student {
+private:
+    string name;
+    int roll;
+    float cgpa;
+    vector<string> courses;
+
+public:
+    // Default constructor
+    Student() {
+        name = "Unknown";
+        roll = 0;
+        cgpa = 0.0;
+    }
+
+    // Parameterized constructor
+    Student(string n, int r, float c) {
+        name = n;
+        roll = r;
+        setCGPA(c);
+    }
+
+    // Copy constructor
+    Student(const Student &s) {
+        name = s.name;
+        roll = s.roll;
+        cgpa = s.cgpa;
+        courses = s.courses;
+    }
+
+    // Destructor
+    ~Student() {
+        // No manual cleanup needed here
+    }
+
+    void setCGPA(float c) {
+        if (c >= 0.0 && c <= 10.0)
+            cgpa = c;
+        else
+            cout << "Invalid CGPA. Must be between 0.0 and 10.0\n";
+    }
+
+    void addCourse(string course) {
+        if (!course.empty())
+            courses.push_back(course);
+        else
+            cout << "Invalid course name.\n";
+    }
+
+    void displayInfo() {
+        cout << "Name: " << name << "\nRoll: " << roll << "\nCGPA: " << cgpa << "\nCourses:\n";
+        for (string course : courses)
+            cout << "- " << course << endl;
+    }
+
+    int getRoll() {
+        return roll;
+    }
+};
+
+class StudentManagementSystem {
+private:
+    vector<Student> students;
+
+public:
+    void addStudent(Student s) {
+        students.push_back(s);
+    }
+
+    void searchStudent(int roll) {
+        for (Student &s : students) {
+            if (s.getRoll() == roll) {
+                s.displayInfo();
+                return;
+            }
+        }
+        cout << "Student not found.\n";
+    }
+
+    void showAll() {
+        for (Student &s : students)
+            s.displayInfo();
+    }
+};
+
+// Main function for demo
+int main() {
+    StudentManagementSystem sms;
+
+    Student s1("Alice", 101, 8.5);
+    s1.addCourse("Math");
+    s1.addCourse("Physics");
+
+    Student s2("Bob", 102, 9.2);
+    s2.addCourse("Chemistry");
+
+    sms.addStudent(s1);
+    sms.addStudent(s2);
+
+    cout << "\nAll Students:\n";
+    sms.showAll();
+
+    cout << "\nSearch Student with Roll 101:\n";
+    sms.searchStudent(101);
+
+    return 0;
+}
